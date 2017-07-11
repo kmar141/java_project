@@ -2,6 +2,7 @@ package com.example.kieran.prison;
 
 import java.io.PipedReader;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import db.SqlRunner;
 
@@ -12,6 +13,7 @@ import db.SqlRunner;
 public class Prisoner {
     private int id;
     private String name;
+    private ArrayList<Food> belly = new ArrayList<Food>();
 
     public Prisoner(int id, String name){
         this.id = id;
@@ -30,11 +32,19 @@ public class Prisoner {
         return name;
     }
 
-    public void delete(){
-        String sql = String.format("DELETE FROM prisoners WHERE id = %d%;", this.id);
+    public void deleteByID(){
+        String sql = String.format("DELETE FROM prisoners WHERE id = d%;", this.id);
         SqlRunner.executeUpdate(sql);
         SqlRunner.closeConnection();
     }
+
+    public void deleteByName(String name){
+        String sql = String.format("DELETE FROM prisoners WHERE name = '%s';", name);
+        SqlRunner.executeUpdate(sql);
+        SqlRunner.closeConnection();
+    }
+
+
 
     public void save() {
         String sql = String.format("INSERT INTO prisoners (name) VALUES ('%s');", this.name);
@@ -64,6 +74,20 @@ public class Prisoner {
         String sql = "DELETE FROM prisoners;";
         SqlRunner.executeUpdate(sql);
         SqlRunner.closeConnection();
+    }
+
+    public void feedPrisoner(Food food){
+        if (!isBellyFull()){
+            belly.add(food);
+        }
+    }
+
+    public int foodCount(){
+        return belly.size();
+    }
+
+    public boolean isBellyFull(){
+        return (foodCount() >= 5);
     }
 
 

@@ -12,6 +12,7 @@ public class Cell {
     private int id;
     private int prisoner_id;
 
+
     public Cell(int prisoner_id){
         this.prisoner_id = prisoner_id;
     }
@@ -36,4 +37,5 @@ public class Cell {
         SqlRunner.executeUpdate(sql);
         SqlRunner.closeConnection();
     }
+
 }
