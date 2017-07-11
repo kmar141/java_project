@@ -32,9 +32,17 @@ public class Cell {
         return this.cell.size();
     }
 
-    public void addPrisoner(Prisoner prisoner){
-        cell.add(prisoner);
+    public void addPrisoner(Prisoner prisoner) {
+        if (!prisoner.isViolent()) {
+            cell.add(prisoner);
+                } else {
+            if ((prisoner.isViolent()) && !containsViolentPrisoner()){
+                cell.add(prisoner);
+
+        }
     }
+
+}
 
     public void emptyCell(){
         cell.clear();
@@ -65,5 +73,16 @@ public class Cell {
             prisoner_names.add(prisoner.getName());
         }
         return prisoner_names.toString();
+    }
+
+
+    public boolean containsViolentPrisoner() {
+        for (Prisoner prisoner : cell) {
+            if (prisoner.isViolent()) {
+                return true;
+
+            }
+        }
+        return false;
     }
 }

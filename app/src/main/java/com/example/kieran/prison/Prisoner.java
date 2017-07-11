@@ -14,6 +14,9 @@ public class Prisoner {
     private int id;
     private String name;
     private ArrayList<Food> belly = new ArrayList<Food>();
+    private boolean violent;
+
+
 
     public Prisoner(int id, String name){
         this.id = id;
@@ -22,6 +25,11 @@ public class Prisoner {
 
     public Prisoner(String name){
         this.name = name;
+    }
+
+    public Prisoner(String name, boolean violent){
+        this.name = name;
+        this.violent = violent;
     }
 
     public int getId() {
@@ -88,6 +96,10 @@ public class Prisoner {
 
     public boolean isBellyFull(){
         return (foodCount() >= 5);
+    }
+
+    public boolean isViolent() {
+        return violent;
     }
 
 
