@@ -16,18 +16,19 @@ import static org.junit.Assert.assertNull;
 public class PrisonTest {
 
     Prisoner prisoner;
+    Prisoner prisoner2;
+    Prisoner prisoner3;
     Cell cell;
     Food food;
+
 
     @Before
     public void before(){
         prisoner = new Prisoner("Rick");
-        cell = new Cell(1);
-    }
+        prisoner2 = new Prisoner("Morty");
+        prisoner3 = new Prisoner("Jerry");
+        cell = new Cell();
 
-    @Test
-    public void testPrisonerName() throws Exception {
-        assertEquals("Rick", prisoner.getName());
 
     }
 
@@ -59,8 +60,41 @@ public class PrisonTest {
     }
 
     @Test
-    public void testPrisonerNameByCell() throws Exception {
+    public void testCanAddPrisoner() throws Exception {
+        cell.addPrisoner(prisoner);
+        assertEquals(1, cell.cellCount());
+    }
+
+    @Test
+    public void testCellClear() throws Exception {
+        cell.addPrisoner(prisoner);
+        cell.emptyCell();
+        assertEquals(0, cell.cellCount());
+
+    }
+
+    @Test
+    public void testPrisonerName() throws Exception {
+        cell.addPrisoner(prisoner);
         assertEquals("Rick", cell.getPrisonerName());
+
+    }
+
+    @Test
+    public void testAddThreePrisoners() throws Exception {
+        cell.addPrisoner(prisoner);
+        cell.addPrisoner(prisoner2);
+        cell.addPrisoner(prisoner3);
+        assertEquals(3, cell.cellCount());
+
+    }
+
+    @Test
+    public void testGetPrionerNames() throws Exception {
+        cell.addPrisoner(prisoner);
+        cell.addPrisoner(prisoner2);
+        cell.addPrisoner(prisoner3);
+        assertEquals("Rick, Morty, Jerry", cell.getPrisonerNames());
 
     }
 }
