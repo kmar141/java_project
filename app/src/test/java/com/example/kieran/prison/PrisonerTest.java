@@ -38,6 +38,12 @@ public class PrisonerTest {
     }
 
     @Test
+    public void testPrisonerName() throws Exception {
+        assertEquals("Rick", prisoner.getName());
+
+    }
+
+    @Test
     public void testPrisonerCanEat() throws Exception {
         prisoner.feedPrisoner(food);
         assertEquals(1, prisoner.foodCount());
@@ -52,14 +58,17 @@ public class PrisonerTest {
     }
 
     @Test
+    public void bellyEmpty(){
+        assertEquals(0, prisoner.foodCount());
+    }
+
+    @Test
     public void cannotEatWhenBellyFull(){
         for (int i = 0; i < 7; i++){
             prisoner.feedPrisoner(food);
         }
         assertEquals(5, prisoner.foodCount());
     }
-
-
 
 
     @Test
