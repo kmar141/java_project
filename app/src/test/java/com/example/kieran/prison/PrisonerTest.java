@@ -101,7 +101,7 @@ public class PrisonerTest {
     @Test
     public void testPrisonerCanHaveVisitor() throws Exception {
         prisoner.hasVisitor(visitor);
-        assertEquals(1, prisoner.numberOfVisitors);
+        assertEquals(1, prisoner.numberOfVisitors());
 
     }
 }

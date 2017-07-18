@@ -15,7 +15,6 @@ public class Prisoner {
     private String name;
     private ArrayList<Food> belly = new ArrayList<Food>();
     private boolean violent;
-    private int visitors;
     private ArrayList<Visitor> visitors = new ArrayList<Visitor>();
 
 
