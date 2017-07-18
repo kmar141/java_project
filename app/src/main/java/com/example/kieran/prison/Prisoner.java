@@ -15,7 +15,8 @@ public class Prisoner {
     private String name;
     private ArrayList<Food> belly = new ArrayList<Food>();
     private boolean violent;
-
+    private int visitors;
+    private ArrayList<Visitor> visitors = new ArrayList<Visitor>();
 
 
     public Prisoner(int id, String name){
@@ -30,6 +31,10 @@ public class Prisoner {
     public Prisoner(String name, boolean violent){
         this.name = name;
         this.violent = violent;
+    }
+
+    public Prisoner(){
+        this.visitors = new ArrayList<Visitor>();
     }
 
     public int getId() {
@@ -101,6 +106,15 @@ public class Prisoner {
     public boolean isViolent() {
         return violent;
     }
+
+    public void hasVisitor(Visitor visitor) {
+        visitors.add(visitor);
+    }
+
+    public int numberOfVisitors(){
+       return this.visitors.size();
+    }
+
 
 
 

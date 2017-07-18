@@ -28,6 +28,7 @@ public class PrisonerTest {
     Prison brixton;
     Cell cell1A;
     Cell cell1B;
+    Visitor visitor;
 
 
     @Before
@@ -41,6 +42,7 @@ public class PrisonerTest {
         cell1B = new Cell(true);
         wandsworth = new Prison();
         brixton = new Prison();
+        visitor = new Visitor();
 
 
 
@@ -94,7 +96,12 @@ public class PrisonerTest {
         cell1A.emptyCell();
         cell1B.addPrisoner(violentPrisoner1);
         assertEquals(1, cell1B.cellCount());
+    }
 
+    @Test
+    public void testPrisonerCanHaveVisitor() throws Exception {
+        prisoner.hasVisitor(visitor);
+        assertEquals(1, prisoner.numberOfVisitors);
 
     }
 }
