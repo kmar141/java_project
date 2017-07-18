@@ -18,10 +18,16 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class Cell {
     private ArrayList<Prisoner> cell;
+    private boolean solitary;
 
 
     public Cell(){
         this.cell = new ArrayList<Prisoner>();
+    }
+
+    public Cell(boolean solitary){
+        this.cell = new ArrayList<Prisoner>();
+        this.solitary = solitary;
     }
 
     public ArrayList<Prisoner> getCell(){
@@ -84,5 +90,9 @@ public class Cell {
             }
         }
         return false;
+    }
+
+    public boolean isSolitary() {
+        return solitary;
     }
 }

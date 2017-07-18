@@ -24,6 +24,10 @@ public class PrisonerTest {
     Prisoner violentPrisoner1;
     Prisoner violentPrisoner2;
     Food food;
+    Prison wandsworth;
+    Prison brixton;
+    Cell cell1A;
+    Cell cell1B;
 
 
     @Before
@@ -33,6 +37,11 @@ public class PrisonerTest {
         prisoner3 = new Prisoner("Jerry");
         violentPrisoner1 = new Prisoner("Bebop", true);
         violentPrisoner2 = new Prisoner("Rocksteady", true);
+        cell1A = new Cell(false);
+        cell1B = new Cell(true);
+        wandsworth = new Prison();
+        brixton = new Prison();
+
 
 
     }
@@ -77,5 +86,15 @@ public class PrisonerTest {
         assertEquals(false, prisoner2.isViolent());
     }
 
+    @Test
+    public void testCanMovePrison() throws Exception {
+        wandsworth.addCell(cell1A);
+        cell1A.addPrisoner(violentPrisoner1);
+        brixton.addCell(cell1B);
+        cell1A.emptyCell();
+        cell1B.addPrisoner(violentPrisoner1);
+        assertEquals(1, cell1B.cellCount());
 
+
+    }
 }
