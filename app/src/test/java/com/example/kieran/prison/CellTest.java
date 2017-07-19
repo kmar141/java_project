@@ -23,6 +23,9 @@ public class CellTest {
     Prisoner violentPrisoner1;
     Prisoner violentPrisoner2;
     Cell cell;
+    Cell solitary;
+    Visitor visitor;
+    Prison wandsworth;
 
     @Before
     public void before(){
@@ -31,7 +34,10 @@ public class CellTest {
         prisoner3 = new Prisoner("Jerry");
         violentPrisoner1 = new Prisoner("Bebop", true);
         violentPrisoner2 = new Prisoner("Rocksteady", true);
-        cell = new Cell();
+        cell = new Cell(false);
+        solitary = new Cell(true);
+        visitor = new Visitor();
+        wandsworth = new Prison();
 
     }
 
@@ -84,4 +90,27 @@ public class CellTest {
         assertFalse(cell.containsViolentPrisoner());
 
     }
+
+    @Test
+    public void testCellIsSolitary() throws Exception {
+        assertTrue(solitary.isSolitary());
+
+    }
+
+    @Test
+    public void testPrisonerCanHaveVisitor() throws Exception {
+        cell.addVisitor(visitor);
+        assertEquals(1, cell.numberOfVisitors());
+
+    }
+
+//    @Test
+//    public void testPrisonerCantHaveVisitor() throws Exception {
+//        wandsworth.addCell(solitary);
+//        solitary.addPrisoner(violentPrisoner1);
+//
+//        violentPrisoner1.hasVisitor(visitor);
+//        assertEquals(0, violentPrisoner1.numberOfVisitors());
+//
+//    }
 }

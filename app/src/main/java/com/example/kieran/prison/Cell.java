@@ -17,17 +17,26 @@ import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
  */
 
 public class Cell {
-    private ArrayList<Prisoner> cell;
-    private boolean solitary;
+    public ArrayList<Prisoner> cell;
+    public boolean solitary;
+    public ArrayList<Visitor> visitors;
 
 
     public Cell(){
         this.cell = new ArrayList<Prisoner>();
+        this.visitors = new ArrayList<Visitor>();
     }
+
+
 
     public Cell(boolean solitary){
         this.cell = new ArrayList<Prisoner>();
+        this.visitors = new ArrayList<Visitor>();
         this.solitary = solitary;
+    }
+
+    public ArrayList<Visitor> getVisitors() {
+        return visitors;
     }
 
     public ArrayList<Prisoner> getCell(){
@@ -38,48 +47,44 @@ public class Cell {
         return this.cell.size();
     }
 
-    public void addPrisoner(Prisoner prisoner) {
+    public void addPrisoner(Prisoner prisoner){
         if (!prisoner.isViolent()) {
             cell.add(prisoner);
                 } else {
             if ((prisoner.isViolent()) && !containsViolentPrisoner()){
                 cell.add(prisoner);
 
+            }
         }
+
     }
 
-}
+    public void addVisitor(Visitor visitor){
+        if (solitary == false){
+            visitors.add(visitor);
+        }
+    }
 
     public void emptyCell(){
         cell.clear();
     }
 
+
+
     public String getPrisonerName(){
         return cell.get(0).getName();
     }
 
-//    public void save() {
-//        String sql = String.format("INSERT INTO cells (prisoner_id) VALUES ('%d');",
-//                this.prisoner_id);
-//        this.id = SqlRunner.executeUpdate(sql);
-//        SqlRunner.closeConnection();
+
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    public String getPrisonerNames() {
+//        StringJoiner prisoner_names = new StringJoiner(", ");
+//        for (Prisoner prisoner : cell) {
+//
+//            prisoner_names.add(prisoner.getName());
+//        }
+//        return prisoner_names.toString();
 //    }
-
-    public static void deleteAll(){
-        String sql = "DELETE FROM cells;";
-        SqlRunner.executeUpdate(sql);
-        SqlRunner.closeConnection();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public String getPrisonerNames() {
-        StringJoiner prisoner_names = new StringJoiner(", ");
-        for (Prisoner prisoner : cell) {
-
-            prisoner_names.add(prisoner.getName());
-        }
-        return prisoner_names.toString();
-    }
 
 
     public boolean containsViolentPrisoner() {
@@ -94,5 +99,9 @@ public class Cell {
 
     public boolean isSolitary() {
         return solitary;
+    }
+
+    public int numberOfVisitors() {
+        return visitors.size();
     }
 }

@@ -29,6 +29,7 @@ public class PrisonerTest {
     Cell cell1A;
     Cell cell1B;
     Visitor visitor;
+    Cell solitary;
 
 
     @Before
@@ -43,6 +44,7 @@ public class PrisonerTest {
         wandsworth = new Prison();
         brixton = new Prison();
         visitor = new Visitor();
+        solitary = new Cell(true);
 
 
 
@@ -61,12 +63,6 @@ public class PrisonerTest {
 
     }
 
-    @Test
-    public void testPrisonerRemove() throws Exception {
-        prisoner.deleteByName("Rick");
-        assertEquals("Rick", prisoner.getName());
-
-    }
 
     @Test
     public void bellyEmpty(){
@@ -98,10 +94,5 @@ public class PrisonerTest {
         assertEquals(1, cell1B.cellCount());
     }
 
-    @Test
-    public void testPrisonerCanHaveVisitor() throws Exception {
-        prisoner.hasVisitor(visitor);
-        assertEquals(1, prisoner.numberOfVisitors());
 
-    }
 }
