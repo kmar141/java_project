@@ -98,12 +98,13 @@ public class PrisonerTest {
     @Test
     public void testPrisonerRiot() throws Exception {
         wandsworth.addCell(cell1A);
-        cell1A.addPrisoner(violentPrisoner1);
+        cell1A.addPrisoner(prisoner);
+        prisoner.feedPrisoner(food);
 
-        Prisoner spyPrisoner = Mockito.spy(violentPrisoner1);
-        Mockito.when(spyPrisoner.prisonerRiotCheck()).thenReturn(0);
-        cell1A.prisonerRiot(violentPrisoner1);
-        assertEquals(0, cell1A.cellCount());
+        Prisoner spyPrisoner = Mockito.spy(prisoner);
+        Mockito.when(spyPrisoner.prisonerRiotCheck()).thenReturn(1);
+        cell1A.prisonerRiot(spyPrisoner);
+        assertNull(cell1A.cellCount());
 
     }
 }
