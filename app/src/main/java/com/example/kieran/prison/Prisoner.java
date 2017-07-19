@@ -3,6 +3,7 @@ package com.example.kieran.prison;
 import java.io.PipedReader;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Random;
 
 import db.SqlRunner;
 
@@ -46,6 +47,8 @@ public class Prisoner {
         if (!isBellyFull()){
             belly.add(food);
         }
+        prisonerRiotCheck();
+
     }
 
     public int foodCount(){
@@ -59,6 +62,15 @@ public class Prisoner {
     public boolean isViolent() {
         return violent;
     }
+
+    public int prisonerRiotCheck(){
+        Random random = new Random();
+        int bellyCount = foodCount();
+        int riotChance = random.nextInt(foodCount());
+        return riotChance;
+    }
+
+
 
 
 

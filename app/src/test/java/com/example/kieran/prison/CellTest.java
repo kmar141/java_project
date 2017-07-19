@@ -24,7 +24,11 @@ public class CellTest {
     Prisoner violentPrisoner2;
     Cell cell;
     Cell solitary;
+    Cell cell2;
+    Cell cell3;
     Visitor visitor;
+    Visitor visitor2;
+    Visitor visitor3;
     Prison wandsworth;
 
     @Before
@@ -35,8 +39,12 @@ public class CellTest {
         violentPrisoner1 = new Prisoner("Bebop", true);
         violentPrisoner2 = new Prisoner("Rocksteady", true);
         cell = new Cell(false);
+        cell2 = new Cell(false);
+        cell3 = new Cell(false);
         solitary = new Cell(true);
         visitor = new Visitor();
+        visitor2 = new Visitor();
+        visitor3 = new Visitor();
         wandsworth = new Prison();
 
     }
@@ -104,13 +112,25 @@ public class CellTest {
 
     }
 
-//    @Test
-//    public void testPrisonerCantHaveVisitor() throws Exception {
-//        wandsworth.addCell(solitary);
-//        solitary.addPrisoner(violentPrisoner1);
-//
-//        violentPrisoner1.hasVisitor(visitor);
-//        assertEquals(0, violentPrisoner1.numberOfVisitors());
-//
-//    }
+    @Test
+    public void testPrisonerCantHaveVisitor() throws Exception {
+        wandsworth.addCell(solitary);
+        solitary.addPrisoner(violentPrisoner1);
+        solitary.addVisitor(visitor);
+        assertEquals(0, solitary.numberOfVisitors());
+    }
+
+    @Test
+    public void totalNumberOfVisitors() throws Exception {
+        wandsworth.addCell(solitary);
+        wandsworth.addCell(cell);
+        wandsworth.addCell(cell2);
+        wandsworth.addCell(cell3);
+        solitary.addVisitor(visitor);
+        cell.addVisitor(visitor);
+        cell2.addVisitor(visitor2);
+        cell3.addVisitor(visitor3);
+        assertEquals(3, wandsworth.totalVisitors());
+
+    }
 }

@@ -5,6 +5,7 @@ import android.support.annotation.RequiresApi;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 
@@ -94,5 +95,15 @@ public class PrisonerTest {
         assertEquals(1, cell1B.cellCount());
     }
 
+    @Test
+    public void testPrisonerRiot() throws Exception {
+        wandsworth.addCell(cell1A);
+        cell1A.addPrisoner(violentPrisoner1);
 
+        Prisoner spyPrisoner = Mockito.spy(violentPrisoner1);
+        Mockito.when(spyPrisoner.prisonerRiotCheck()).thenReturn(0);
+        cell1A.prisonerRiot(violentPrisoner1);
+        assertEquals(0, cell1A.cellCount());
+
+    }
 }

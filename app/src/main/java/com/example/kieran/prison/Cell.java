@@ -76,15 +76,15 @@ public class Cell {
     }
 
 
-//    @RequiresApi(api = Build.VERSION_CODES.N)
-//    public String getPrisonerNames() {
-//        StringJoiner prisoner_names = new StringJoiner(", ");
-//        for (Prisoner prisoner : cell) {
-//
-//            prisoner_names.add(prisoner.getName());
-//        }
-//        return prisoner_names.toString();
-//    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public String getPrisonerNames() {
+        StringJoiner prisoner_names = new StringJoiner(", ");
+        for (Prisoner prisoner : cell) {
+
+            prisoner_names.add(prisoner.getName());
+        }
+        return prisoner_names.toString();
+    }
 
 
     public boolean containsViolentPrisoner() {
@@ -103,5 +103,12 @@ public class Cell {
 
     public int numberOfVisitors() {
         return visitors.size();
+    }
+
+    public void prisonerRiot(Prisoner prisoner){
+        if (prisoner.prisonerRiotCheck() < 2){
+            cell.remove(1);
+        }
+
     }
 }

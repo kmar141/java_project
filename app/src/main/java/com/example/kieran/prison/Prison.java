@@ -10,6 +10,7 @@ public class Prison {
     private ArrayList<Cell> prison;
     private String name;
 
+
     public Prison(){
         prison = new ArrayList<Cell>();
     }
@@ -30,5 +31,13 @@ public class Prison {
 
     public void removeCell(Cell cell1A) {
         prison.clear();
+    }
+
+    public int totalVisitors(){
+        int counter = 0;
+        for (Cell cell : prison){
+           counter += cell.numberOfVisitors();
+        }
+        return counter;
     }
 }
