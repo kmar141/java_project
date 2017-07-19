@@ -97,14 +97,13 @@ public class PrisonerTest {
 
     @Test
     public void testPrisonerRiot() throws Exception {
-        wandsworth.addCell(cell1A);
-        cell1A.addPrisoner(prisoner);
-        prisoner.feedPrisoner(food);
-
         Prisoner spyPrisoner = Mockito.spy(prisoner);
+        wandsworth.addCell(cell1A);
+        cell1A.addPrisoner(spyPrisoner);
+        spyPrisoner.feedPrisoner(food);
         Mockito.when(spyPrisoner.prisonerRiotCheck()).thenReturn(1);
         cell1A.prisonerRiot(spyPrisoner);
-        assertNull(cell1A.cellCount());
+        assertEquals(0, cell1A.cellCount());
 
     }
 }

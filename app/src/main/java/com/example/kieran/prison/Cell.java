@@ -107,7 +107,7 @@ public class Cell {
 
     public void prisonerRiot(Prisoner prisoner){
         if (prisoner.prisonerRiotCheck() < 2){
-            cell.remove(1);
+            cell.remove(0);
         }
 
     }
